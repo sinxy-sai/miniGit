@@ -1,0 +1,16 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "minigit-learning"
+version = "0.1.0.dev0"
+description = "A Python learning project exploring Git's core concepts"
+requires-python = ">=3.10"
+
+[project.scripts]
+minigit = "libminigit:main"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+py-modules = ["libminigit"]

@@ -1,4 +1,4 @@
 wyag/
 __pycache__/
 *.egg-info/
-test/
+.pytest_cache/

@@ -14,3 +14,9 @@ minigit = "libminigit:main"
 [tool.setuptools]
 package-dir = {"" = "src"}
 py-modules = ["libminigit"]
+
+[tool.pytest.ini_options]
+testpaths = ["spec"]
+python_files = ["*_spec.py"]
+python_functions = ["it_*", "test_*"]
+addopts = "-ra"

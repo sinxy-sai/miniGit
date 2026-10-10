@@ -1082,7 +1082,8 @@ def tree_to_dict(repo, ref, prefix=""):
     tree = object_read(repo, tree_sha)
 
     for leaf in tree.items:
-        full_path = os.path.join(prefix, leaf.path)
+        # Index-style paths always use "/".
+        full_path = prefix + "/" + leaf.path if prefix else leaf.path
 
         # We read the object to extract its type (this is uselessly
         # expensive: we could just open it as a file and read the
@@ -1130,7 +1131,7 @@ def cmd_status_index_worktree(repo, index):
             continue
         for f in files:
             full_path = os.path.join(root, f)
-            rel_path = os.path.relpath(full_path, repo.worktree)
+            rel_path = os.path.relpath(full_path, repo.worktree).replace(os.sep, "/")
             all_files.append(rel_path)
 
     # We now traverse the index, and compare real files with the cached
@@ -1263,7 +1264,8 @@ def rm(repo, paths, delete=True, skip_missing=False):
     # Now iterate over the list of entries, and remove those whose
     # paths we find in abspaths.  Preserve the others in kept_entries.
     for e in index.entries:
-        full_path = os.path.join(repo.worktree, e.name)
+        # normpath so a "/"-style entry name matches an abspath on Windows.
+        full_path = os.path.normpath(os.path.join(repo.worktree, e.name))
 
         if full_path in abspaths:
             remove.append(full_path)
@@ -1305,7 +1307,8 @@ def add(repo, paths, delete=True, skip_missing=False):
         abspath = os.path.abspath(path)
         if not (abspath.startswith(worktree) and os.path.isfile(abspath)):
             raise Exception(f"Not a file, or outside the worktree: {paths}")
-        relpath = os.path.relpath(abspath, repo.worktree)
+        # Git index names always use "/", even on Windows.
+        relpath = os.path.relpath(abspath, repo.worktree).replace(os.sep, "/")
         clean_paths.add((abspath,  relpath))
 
     # Find and read the index.  It was modified by rm.  (This isn't
@@ -1326,7 +1329,9 @@ def add(repo, paths, delete=True, skip_missing=False):
             mtime_s = int(stat.st_mtime)
             mtime_ns = stat.st_mtime_ns % 10**9
 
-            entry = GitIndexEntry(ctime=(ctime_s, ctime_ns), mtime=(mtime_s, mtime_ns), dev=stat.st_dev, ino=stat.st_ino,
+            # Windows synthesizes 64-bit st_dev/st_ino, which don't fit
+            # the index's 4-byte fields; truncate like Git for Windows.
+            entry = GitIndexEntry(ctime=(ctime_s, ctime_ns), mtime=(mtime_s, mtime_ns), dev=stat.st_dev & 0xFFFFFFFF, ino=stat.st_ino & 0xFFFFFFFF,
                                   mode_type=0b1000, mode_perms=0o644, uid=stat.st_uid, gid=stat.st_gid,
                                   fsize=stat.st_size, sha=sha, flag_assume_valid=False,
                                   flag_stage=False, name=relpath)

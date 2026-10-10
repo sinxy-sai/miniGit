@@ -621,10 +621,14 @@ def ls_tree(repo,ref,recursive=None,prefix=""):
             case b'16':type = "commit" # A submodule
             case _: raise Exception(f"Weird tree leaf mode {item.mode}")
 
+        # Displayed paths always use "/", like real git (os.path.join
+        # would emit backslashes on Windows).
+        full_path = prefix + "/" + item.path if prefix else item.path
+
         if not (recursive and type == "tree"): # This is a leaf
-            print(f"{'0' * (6 - len(item.mode)) + item.mode.decode('ascii')} {type} {item.sha}\t{os.path.join(prefix, item.path)}")
+            print(f"{'0' * (6 - len(item.mode)) + item.mode.decode('ascii')} {type} {item.sha}\t{full_path}")
         else: # This is a branch, recurse
-            ls_tree(repo, item.sha, recursive, os.path.join(prefix, item.path))
+            ls_tree(repo, item.sha, recursive, full_path)
 
 argsp = argsubparsers.add_parser("checkout", help="Checkout a commit inside of a directory.")
 argsp.add_argument("commit",help="The commit or tree to checkout.")

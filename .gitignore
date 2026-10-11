@@ -4,4 +4,5 @@ __pycache__/
 .pytest_cache/
 skills/
 skills-lock.json
-tools/
+docs/diagrams/
+tools/diagram-toolchain/

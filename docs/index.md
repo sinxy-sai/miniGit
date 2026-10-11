@@ -52,18 +52,9 @@ miniGit 使用 `.minigit` 保存仓库数据，因此可以和同一目录中的
 代码架构
 ```
 
-## 图表源码
+## 图表
 
-文档使用 Mermaid 表达软件结构和流程。图表源码保存在 [`diagrams/`](diagrams/) 中，便于继续修改或在本地重新渲染。
-
-- [系统总览](diagrams/system-overview.mmd)
-- [对象模型](diagrams/object-model.mmd)
-- [add 到 commit 流程](diagrams/add-commit-flow.mmd)
-- [工作区状态模型](diagrams/status-model.mmd)
-- [仓库目录结构](diagrams/repository-layout.mmd)
-- [修订表达式解析](diagrams/revision-resolution.mmd)
-- [对象写入时序（PlantUML）](diagrams/object-write-sequence.puml)
-- [提交图遍历（Graphviz DOT）](diagrams/commit-graph.dot)
+架构图和流程图直接以内嵌 Mermaid 代码块保存在对应章节中，便于在支持 Mermaid 的 Markdown 阅读器中查看。渲染后的 SVG/PNG 和可编辑图表源码只作为本地辅助产物，不属于公开仓库内容。
 
 ## 项目定位
 

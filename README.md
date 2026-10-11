@@ -51,7 +51,7 @@ python ./src/minigit init ./demo
 
 ## 文档
 
-详细的学习型文档位于 [`docs/`](docs/index.md)，内容覆盖安装、对象数据库、索引、引用、工作区状态、算法原理、数据格式、复杂度、源码架构、Git 互操作性和已知限制。文档中的 Mermaid、PlantUML 和 Graphviz 图表源码保存在 [`docs/diagrams/`](docs/diagrams/) 中。
+详细的学习型文档位于 [`docs/`](docs/index.md)，内容覆盖安装、对象数据库、索引、引用、工作区状态、算法原理、数据格式、复杂度、源码架构、Git 互操作性和已知限制。相关架构和流程图直接嵌入 Markdown 文档。
 
 最小工作流示例：
 

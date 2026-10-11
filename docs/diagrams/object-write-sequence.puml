@@ -1,0 +1,22 @@
+@startuml
+title miniGit 对象写入时序
+
+actor User
+participant "object_write" as Write
+participant "GitObject.serialize" as Serialize
+participant "SHA-1" as Hash
+database "objects/" as Store
+participant "zlib" as Zlib
+
+User -> Write: 写入对象
+Write -> Serialize: serialize()
+Serialize --> Write: payload
+Write -> Write: 追加 type + size + NUL
+Write -> Hash: 计算 SHA-1(raw)
+Hash --> Write: object id
+Write -> Zlib: 压缩 raw
+Zlib --> Write: compressed bytes
+Write -> Store: objects/sha[0:2]/sha[2:]
+Store --> Write: 已存在则保持不变
+Write --> User: 返回 SHA-1
+@enduml

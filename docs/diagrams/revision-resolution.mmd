@@ -1,0 +1,14 @@
+flowchart TD
+    Input[修订名称] --> Resolver[object_resolve]
+    Resolver --> IsHead{HEAD?}
+    IsHead -->|是| Head[ref_resolve HEAD]
+    IsHead -->|否| Hash{完整或短 SHA-1?}
+    Hash -->|是| ObjectPath[objects/<prefix>/<rest>]
+    Hash -->|否| Tag[refs/tags/name]
+    Tag --> Branch[refs/heads/name]
+    Branch --> Remote[refs/remotes/name]
+    Head --> Sha[对象 SHA-1]
+    ObjectPath --> Sha
+    Tag --> Sha
+    Branch --> Sha
+    Remote --> Sha

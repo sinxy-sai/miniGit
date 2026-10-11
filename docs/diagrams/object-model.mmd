@@ -1,0 +1,8 @@
+flowchart TD
+    Commit[Commit] -->|tree| RootTree[Root Tree]
+    Commit -->|parent| Parent[Parent Commit]
+    RootTree --> Blob[Blob]
+    RootTree --> ChildTree[Child Tree]
+    ChildTree --> NestedBlob[Nested Blob]
+    Tag[Annotated Tag] -->|object| Commit
+    Index[Index entry] -->|sha| Blob

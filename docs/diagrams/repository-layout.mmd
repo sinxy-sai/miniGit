@@ -1,0 +1,11 @@
+flowchart TD
+    Repo[.minigit]
+    Repo --> HEAD[HEAD]
+    Repo --> Config[config]
+    Repo --> Index[index]
+    Repo --> Objects[objects/]
+    Repo --> Refs[refs/]
+    Repo --> Branches[branches/]
+    Refs --> Heads[heads/]
+    Refs --> Tags[tags/]
+    Objects --> Loose[压缩 loose objects]

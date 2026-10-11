@@ -1,0 +1,9 @@
+flowchart LR
+    Head[HEAD Tree] --> HeadIndex[比较 HEAD 与索引]
+    Index[索引] --> HeadIndex
+    Index --> IndexWorktree[比较索引与工作区]
+    Worktree[工作区] --> IndexWorktree
+    Ignore[ignore 规则] --> Untracked[未跟踪文件]
+    Worktree --> Untracked
+    HeadIndex --> Staged[已暂存: added / modified / deleted]
+    IndexWorktree --> Unstaged[未暂存: modified / deleted]

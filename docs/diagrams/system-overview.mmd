@@ -1,0 +1,14 @@
+flowchart LR
+    User[用户] --> CLI[miniGit CLI]
+    CLI --> Repo[仓库发现与初始化]
+    CLI --> Objects[对象库]
+    CLI --> Index[索引 / 暂存区]
+    CLI --> Refs[引用与修订解析]
+    CLI --> Status[状态计算]
+    CLI --> Ignore[ignore 规则]
+    Index --> Objects
+    Objects --> Refs
+    Status --> Index
+    Status --> Objects
+    Status --> Ignore
+    Refs --> Objects

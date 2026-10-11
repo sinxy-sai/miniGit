@@ -1,0 +1,15 @@
+sequenceDiagram
+    participant User as 用户
+    participant Worktree as 工作区
+    participant Index as 索引
+    participant Objects as 对象库
+    participant Ref as 活动引用
+
+    User->>Worktree: 编辑文件
+    User->>Index: minigit add
+    Index->>Objects: 写入 Blob
+    Index->>Index: 写入索引条目
+    User->>Objects: minigit commit
+    Objects->>Objects: 从索引生成 Tree
+    Objects->>Objects: 创建 Commit
+    Objects->>Ref: 更新 refs/heads/master

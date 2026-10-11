@@ -1,0 +1,13 @@
+digraph MiniGitCommitGraph {
+  rankdir=LR;
+  graph [fontname="Microsoft YaHei", bgcolor="transparent"];
+  node [shape=box, style="rounded", fontname="Microsoft YaHei"];
+  edge [fontname="Microsoft YaHei", label="parent"];
+
+  c2 [label="c2\nsecond commit"];
+  c1 [label="c1\nfirst commit"];
+  c0 [label="c0\ninitial commit"];
+
+  c2 -> c1;
+  c1 -> c0;
+}

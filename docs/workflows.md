@@ -24,6 +24,8 @@ flowchart LR
     Commit --> Clean[工作区干净]
 ```
 
+![add 到 commit 的用户工作流](diagrams/add-commit-flow.svg)
+
 ## 修改后再次提交
 
 ```bash

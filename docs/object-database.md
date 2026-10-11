@@ -14,6 +14,10 @@ flowchart TD
     Tag[Tag 对象] -->|object| Commit
 ```
 
+![miniGit 对象模型](diagrams/object-model.svg)
+
+![对象写入时序](diagrams/object-write-sequence.svg)
+
 ## 通用对象格式
 
 ```text

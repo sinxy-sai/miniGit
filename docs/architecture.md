@@ -21,6 +21,8 @@ flowchart TD
     Status --> Ignore
 ```
 
+![miniGit 系统总览](diagrams/system-overview.svg)
+
 ## 命令入口
 
 文件开头创建 `argparse` 子命令，并在 `main` 中根据 `args.command` 分派到 `cmd_*` 函数。

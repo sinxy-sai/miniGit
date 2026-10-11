@@ -12,6 +12,8 @@ flowchart LR
     H[HEAD / 引用] --> C
 ```
 
+![miniGit 核心对象与区域](diagrams/system-overview.svg)
+
 ## 工作区
 
 工作区是用户实际编辑的文件目录。miniGit 会扫描工作区，用文件的元数据和内容判断文件是否被修改、删除或尚未跟踪。

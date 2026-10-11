@@ -18,6 +18,8 @@ flowchart TD
     ObjectDir --> Commit
 ```
 
+![修订表达式解析](diagrams/revision-resolution.svg)
+
 ## HEAD
 
 默认的 `HEAD` 内容是：

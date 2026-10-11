@@ -27,6 +27,8 @@ flowchart TD
     Refs --> Tags[tags/]
 ```
 
+![.minigit 仓库目录结构](diagrams/repository-layout.svg)
+
 ## `HEAD`
 
 新仓库默认包含：

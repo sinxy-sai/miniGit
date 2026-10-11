@@ -14,6 +14,8 @@ flowchart LR
     Ignore[ignore 规则] --> Untracked
 ```
 
+![工作区状态模型](diagrams/status-model.svg)
+
 ## 已暂存变化
 
 HEAD 与索引的比较产生：

@@ -20,6 +20,8 @@ sequenceDiagram
     Objects->>Objects: 生成 Commit
 ```
 
+![add 到 commit 的流程](diagrams/add-commit-flow.svg)
+
 ## 索引条目
 
 每个 `GitIndexEntry` 记录：

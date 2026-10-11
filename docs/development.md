@@ -57,22 +57,22 @@ def cmd_example(args):
 
 架构或流程发生变化时，应该同步更新：
 
-- 对应 Markdown 章节
+- 对应 Markdown 章节和渲染图
 - 命令参考
 - 已知限制
 - 相关测试说明
 
-图表直接以内嵌 Mermaid 代码块保存在 Markdown 章节中。渲染图片和本地实验源码不需要提交到公开仓库。
+图表以内嵌 Mermaid 代码块维护，并将需要公开预览的 SVG/PNG 放在 `docs/diagrams/`。`.mmd`、`.puml`、`.dot` 源码和本地渲染工具链不提交到公开仓库。
 
 ## Mermaid 渲染
 
 项目文档直接嵌入 Mermaid 代码块。需要在本地导出 SVG 时，可以使用 Mermaid CLI：
 
 ```bash
-npx @mermaid-js/mermaid-cli -i diagram.mmd -o diagram.svg
+npx @mermaid-js/mermaid-cli -i diagram.mmd -o docs/diagrams/diagram.svg
 ```
 
-SVG 或 PNG 是可重新生成的本地产物，不提交到公开仓库。
+SVG 或 PNG 是可重新生成的公开预览产物；源码文件和工具链不提交到公开仓库。
 
 ## 提交前检查
 
